@@ -6,6 +6,7 @@ export function calculateExpiration(expire: string) {
   try {
     const sign = jwt.sign({}, ConfigApp.JWT.JWT_SECRET, {
       expiresIn: expire,
+      algorithm: ConfigApp.JWT.JWT_ALGORITHM,
     });
 
     const decoded = jwt.decode(sign);

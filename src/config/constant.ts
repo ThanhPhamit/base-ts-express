@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -18,8 +19,12 @@ export const ConfigApp = {
     LOGGING: process.env.DATABASE_LOGGING === 'true',
   },
   JWT: {
-    JWT_ALGORITHM: process.env.JWT_ALGORITHM,
-    JWT_SECRET: process.env.JWT_SECRET as jwt.Secret,
+    JWT_ALGORITHM: process.env.JWT_ALGORITHM as jwt.Algorithm,
+    JWT_PUBLIC_KEY: process.env.JWT_PUBLIC_KEY as string,
+    JWT_SECRET: {
+      key: process.env.JWT_PRIVATE_KEY as string,
+      passphrase: process.env.JWT_PASSPHRASE,
+    } as jwt.Secret,
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN as string,
     JWT_REFRESH_EXPIRES_IN: process.env.JWT_REFRESH_EXPIRES_IN as string,
     JWT_COOKIE_EXPIRES_IN: process.env.JWT_COOKIE_EXPIRES_IN as string,

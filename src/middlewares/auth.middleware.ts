@@ -29,7 +29,9 @@ export const authMiddleware = async (req: ICoreRequest, res: Response, next: Nex
 
   try {
     // Verify the token using the JWT secret
-    const decoded = jwt.verify(token, ConfigApp.JWT.JWT_SECRET);
+    const decoded = jwt.verify(token, ConfigApp.JWT.JWT_PUBLIC_KEY, {
+      algorithms: [ConfigApp.JWT.JWT_ALGORITHM],
+    });
     if (
       decoded &&
       typeof decoded === 'object' &&

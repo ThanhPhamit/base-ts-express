@@ -79,7 +79,9 @@ export const refreshToken = async (req: Request, res: Response) => {
     const refreshTokenInput = req.body.refresh_token;
 
     // Verify the refresh token using the JWT secret
-    const decoded = jwt.verify(refreshTokenInput, ConfigApp.JWT.JWT_SECRET);
+    const decoded = jwt.verify(refreshTokenInput, ConfigApp.JWT.JWT_PUBLIC_KEY, {
+      algorithms: [ConfigApp.JWT.JWT_ALGORITHM],
+    });
 
     // Check if the decoded token is valid, of type REFRESH_TOKEN, and not revoked
     if (

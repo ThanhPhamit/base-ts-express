@@ -20,25 +20,16 @@
 
 3. Update the `.env` file with your configuration.
 
-## Running the Application
-
-1. Start the PostgreSQL database using Docker Compose:
+4. Generate RSA key pair for authentication:
 
    ```sh
-   docker-compose up -d
+   # Generate private key with 2048 bits, encrypted with AES-256
+   openssl genpkey -algorithm RSA -out private.key -pkeyopt rsa_keygen_bits:2048 -aes256
+   
+   # Extract public key from the private key (use your actual password)
+   openssl rsa -pubout -in private.key -out public.key -passin pass:123456
    ```
-
-2. Build the application:
-
-   ```sh
-   npm run build
-   ```
-
-3. Start the application:
-
-   ```sh
-   npm run start
-   ```
+   Then Manual copy to JWT_PUBLIC_KEY, JWT_PRIVATE_KEY, JWT_PASSPHRASE
 
 ## Migration
 
@@ -70,4 +61,43 @@
    ```sh
    npm run typeorm-seed:run -- -d {path_to_config_file} --name {path_to_seed_file}
    Ex: npm run typeorm-seed:run -- -d ./src/config/database.ts --name ./src/db/seeds/user.seed.ts
+   ```
+
+## Running the Application
+
+1. Start the PostgreSQL database using Docker Compose:
+
+   ```sh
+   docker-compose up -d
+   ```
+
+2. Run migration:
+
+   ```sh
+   npm run typeorm-migration -- -d ./src/config/database
+   ```
+
+3. Run seed for creating role and permission: (For the first time)
+
+   ```sh
+   npm run typeorm-seed:run -- -d ./src/config/database.ts --name ./src/db/seeds/1737432635607-createBasicRoleAndPermission.seed.ts
+   ```
+
+4. Run cli for creating user:
+
+   ```sh
+   npx ts-node -r tsconfig-paths/register ./src/cli/createUserWithRole "{role: admin/sales/office}" "{email}" "{password}" "{firstName}" "{lastName}" "{firstNameKana}" "{lastNameKana}"
+   Ex: npx ts-node -r tsconfig-paths/register ./src/cli/createUserWithRole "admin" "admin@admin.com" "password@123" "Alexander" "Smith" "アレクサンダー" "スミス"
+   ```
+
+5. Build the application:
+
+   ```sh
+   npm run build
+   ```
+
+6. Start the application:
+
+   ```sh
+   npm run start
    ```

@@ -53,7 +53,7 @@ export function generateTokens(userData: Record<string, unknown>) {
       refresh_token_exp: refresh_token_exp,
     },
     ConfigApp.JWT.JWT_SECRET,
-    { expiresIn: ConfigApp.JWT.JWT_EXPIRES_IN },
+    { expiresIn: ConfigApp.JWT.JWT_EXPIRES_IN, algorithm: ConfigApp.JWT.JWT_ALGORITHM },
   );
 
   // Create the refresh token with user data and token details
@@ -67,7 +67,7 @@ export function generateTokens(userData: Record<string, unknown>) {
       refresh_token_exp: refresh_token_exp,
     },
     ConfigApp.JWT.JWT_SECRET,
-    { expiresIn: ConfigApp.JWT.JWT_REFRESH_EXPIRES_IN },
+    { expiresIn: ConfigApp.JWT.JWT_REFRESH_EXPIRES_IN, algorithm: ConfigApp.JWT.JWT_ALGORITHM },
   );
 
   return { accessToken, refreshToken };
