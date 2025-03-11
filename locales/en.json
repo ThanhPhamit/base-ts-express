@@ -1,0 +1,27 @@
+{
+  "01001": "Not allowed by CORS.",
+  "01002": "Validation Failed.",
+  "01003": "Bad Request.",
+  "01004": "Not Found.",
+  "01005": "Error.",
+
+  "02001": "Authorization token is missing.",
+  "02002": "Invalid or expired token.",
+  "02003": "Invalid username or password.",
+  "02004": "Invalid refresh token.",
+  "02005": "Logout successful.",
+  "02006": "Please enter your email address.",
+  "02007": "Please enter a valid email address.",
+  "02008": "Please enter your password.",
+  "02009": "Please enter your refresh token.",
+
+  "03001": "Email address is already in use.",
+  "03002": "Password must be at least 6 characters long.",
+  "03003": "Password must contain at least one uppercase letter.",
+  "03004": "Password must contain at least one number.",
+  "03005": "Please enter an email address.",
+  "03006": "Please enter a valid email address.",
+  "03007": "Please enter first name.",
+  "03008": "First name must be a string.",
+  "03009": "First name must be between 1 and 30 characters."
+}

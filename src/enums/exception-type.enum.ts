@@ -1,0 +1,16 @@
+export enum EXCEPTION_TYPE {
+  ValidationException = 'ValidationError',
+  DtoValidationException = 'DtoValidationError',
+  SyntaxException = 'SyntaxError',
+  BadRequestException = 'BadRequestError',
+  UnauthorizedException = 'UnauthorizedError',
+  ForbiddenException = 'ForbiddenError',
+  NotFoundException = 'NotFoundError',
+  MethodNotAllowedException = 'MethodNotAllowedError',
+  PayloadTooLargeException = 'PayloadTooLargeError',
+  UnsupportedMediaTypeException = 'UnsupportedMediaTypeError',
+  TooManyRequestsException = 'TooManyRequestsError',
+  InternalServerErrorException = 'InternalServerError',
+  ServiceUnavailableException = 'ServiceUnavailableError',
+  CorsException = 'CorsError',
+}
